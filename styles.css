@@ -7,30 +7,14 @@
     font-family: 'Poppins', sans-serif;
 
 }
-body {
-    display: flex;
+body
+{
+    display:flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
- 
+    background: #333;
 }
-/* table para sa wheels and buttons*/
-.game-container {
-    background-color: #006400;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    width: 600px; /* Adjust the width as needed */
-    height: 1100px; /* Adjust the height as needed */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 20px solid ##8B4513; /* Inner border */
-    border-radius: 20px; /* Rounded corners */
-    box-shadow: 0 0 0 10px #63462D, 0 0 10px rgba(58, 255, 9, 0.2); /* Outer border and shadow */
-}
-
 .container
 {
     position: relative;
@@ -58,20 +42,6 @@ body {
     cursor: pointer;
     user-select: none;
 }
-.spinBtn {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-padding: 10px 20px;
-background-color: #007bff;
-color: white;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-z-index: 2;
-}
-
 
 .container .spinBtn::before { /*gpt  adjusted those who are commendted*/
     content: '';
@@ -86,21 +56,18 @@ z-index: 2;
 }
 .container .wheel
 {
-    width: 300px;
-    height: 300px;
-    border: 10px solid #8b4513; /* Wooden rim color */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #333;
     border-radius: 50%;
-    position: relative;
     overflow: hidden;
-    transform: rotate(0deg);
-    transition: transform 4s ease-out;
-    background: radial-gradient(circle, #8b4513 50%, #d4af37 50%);
-}
-/*for wheel number colors and for the font to stand*/
-.number span{
-    font-size: 24px; 
-    color: #ffffff; 
-    transform: rotate(-45deg); /* rotate the text by 90 degrees */
+    box-shadow: 0 0 0 5px #333,
+    0 0 0 15px #fff, 
+    0 0 0 18px #111;
+    transition: transform 5s ease-in-out; /* Ensure smooth rotation */ 
 }
 .container .wheel .number {
     position: absolute;
@@ -115,6 +82,14 @@ z-index: 2;
     align-items: center;
     user-select: none;
     cursor: pointer;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #fff; /* Change this to the color you want */
+}
+.number span{
+    font-size: 24px; 
+    color: #ffffff; 
+    transform: rotate(-45deg); /* rotate the text by 90 degrees */
 }
 .container .wheel .number span::after
 {
@@ -122,8 +97,6 @@ z-index: 2;
     position: absolute;
     font-size: 0.75em;
     font-weight: 500;
-    color: white;
-    
 
 }
 /* General styling for the body */
@@ -148,35 +121,10 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    width: 500px; /* Adjust the width as needed */
-    height: 500px; /* Adjust the height as needed */
+    width: 400px;
+    height: 400px;
     margin-bottom: 20px; /* Adds space between wheel and buttons */
-    background-color: #006400; /* Casino table green color */
-    border: 10px solid #8B4513; /* Dark wood border */
-    border-radius: 20px; /* Rounded corners */
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8); /* Increased shadow for more depth */
-    padding: 10px; /* Added padding for inner spacing */
-    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
 }
-
-
-
-/* Styling for the zero button container */
-.zero-container {
-    display: grid;
-    justify-items: center;
-    align-items: center; /* Center the button vertically */
-    gap: 10px;
-    width: 200px; /* Set the width of the container */
-    height: 100px; /* Set the height of the container */
-    margin-bottom: 5px;
-    border: 2px solid #000000; /* Add border width and color */
-    border-radius: 75px 75px 0 0; /* Create a half circle */
-    padding: 5px; /* Reduce padding */
-    background-color: #2ab10f; /* Optional: Add background color */
-    margin-top: 10px; /* Adjust this value to move the button lower */
-}
-
 
 /* Styling for the button container */
 .button-container {
@@ -191,17 +139,18 @@ body {
     padding: 10px; /* Padding inside the container */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow for depth */
 }
+
 .push-btn {
     background-color: #333;
     color: white;
-    border-color: #F7DC6F; /* Update border color to casino yellow */
-    border-radius: 10px;
+    border: none;
+    border-radius: 5px;
     padding: 15px;
     text-align: center;
     font-size: 1.2em;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 5px #facf40;
+    box-shadow: 0 5px #999;
 }
 
 .push-btn:hover {
@@ -216,22 +165,22 @@ body {
 .color-buttons {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    flex-direction: column; /* Stack color buttons vertically */
     gap: 10px;
     margin-bottom: 10px;
 }
 
 .color-btn {
     padding: 10px 20px;
-    border: 2px solid #FFD700; /* Gold border for a luxurious feel */
+    border: none;
     border-radius: 5px;
     font-size: 1.2em;
     cursor: pointer;
     transition: all 0.3s ease;
     color: white;
     text-transform: uppercase;
-    background-color: #ff4500; /* Default button color */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
 }
+
 /* Different background colors for each button */
 .green {
     background-color: #28a745;
@@ -243,7 +192,6 @@ body {
 
 .black {
     background-color: #333;
-    border: 2px solid #FFD700; /* Gold border for black button */
 }
 
 .black:hover {
@@ -252,7 +200,6 @@ body {
 
 .red {
     background-color: #dc3545;
-    border: 2px solid #FFD700; /* Gold border for red button */
 }
 
 .red:hover {
@@ -265,18 +212,7 @@ body {
         grid-template-columns: repeat(3, 1fr); /* Changes to 3 columns on smaller screens */
     }
 }
-.wheel {
-    width: 300px;
-    height: 300px;
-    border: 10px solid #f8c316; /* Indigo rim color */
-    border-radius: 50%;
-    position: relative;
-    overflow: hidden;
-    transform: rotate(0deg);
-    transition: transform 4s ease-out;
-    background: radial-gradient(circle, #4b0082 50%, #ff4500 50%); /* Indigo to orange gradient */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
-}
+
 .bet-display {
     display: block;
     font-size: 0.9em;
@@ -322,4 +258,200 @@ body {
 .player span {
     font-weight: bold;
     color: #007bff;
+}
+/* Styling for control buttons (Undo, Redo) */
+.control-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.action-btn {
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px #999;
+}
+
+.action-btn:hover {
+    background-color: #555;
+}
+
+.action-btn:active {
+    box-shadow: 0 2px #666;
+    transform: translateY(4px);
+}
+
+/* Styling for range buttons (1-8, 9-16) */
+.range-container {
+    display: flex;
+    gap: 10px;
+    max-width: 300px;
+    margin-bottom: 20px;
+}
+.range-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.range-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px #999;
+    width: 80px;
+}
+
+.range-btn:hover {
+    background-color: #0056b3;
+}
+
+.range-btn:active {
+    box-shadow: 0 2px #666;
+    transform: translateY(4px);
+}
+/* Container for the image on the left */
+.left-image-container {
+    position: fixed;
+    top: 50%; /* Center the image vertically */
+    left: 0; /* Stick the image to the left side */
+    transform: translateY(-50%); /* Adjust to center vertically */
+    padding-left: 10px; /* Space between the edge and image */
+}
+
+
+/* Parent container for buttons and image */
+.buttons-above-image-container {
+    display: flex;
+    flex-direction: column; /* Stack buttons and image vertically */
+    align-items: center; /* Center items horizontally */
+    gap: 10px; /* Space between buttons and image */
+    position: fixed; /* Fixed positioning */
+    top: 20px; /* Distance from the top of the viewport */
+    left: 8%; /* Center horizontally */
+    transform: translateX(-50%); /* Center the container */
+    z-index: 1000; /* Ensure it appears on top of other elements */
+}
+
+/* Container for Chip Distribution and Profile buttons */
+.button-group {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Space between buttons */
+}
+
+/* Styling for Chip Distribution and Profile buttons */
+.chip-btn, .profile-btn {
+    background-color: #007bff; /* Primary button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px #999;
+    width: 150px; /* Adjust width for positioning */
+}
+
+.chip-btn:hover, .profile-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.chip-btn:active, .profile-btn:active {
+    box-shadow: 0 2px #666;
+    transform: translateY(4px); /* Slight movement on click */
+}
+
+/* CSS for inactive state */
+.inactive {
+    pointer-events: none; 
+    opacity: 0.5; 
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.5s;
+}
+
+.popup-overlay.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+/* Styles for the pop-up content */
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 300px;
+}
+
+/* Button styling */
+.close-popup-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.zeroholder {
+    display: grid;
+    justify-items: center;
+    align-items: center; /* Center the button vertically */
+    gap: 10px;
+    width: 200px; /* Set the width of the container */
+    height: 80px; /* Set the height of the container */
+    margin-bottom: 5px;
+    border: 2px solid #000000; /* Add border width and color */
+    border-radius: 75px 75px 0 0; /* Create a half circle */
+    padding: 5px; /* Reduce padding */
+    background-color: #2ab10f; /* Optional: Add background color */
+    margin-top: 10px; /* Adjust this value to move the button lower */
+}
+.game-container {
+    background-color: #006400;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    width: 600px; /* Adjust the width as needed */
+    height: 1100px; /* Adjust the height as needed */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 20px solid #8B4513; /* Inner border */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 0 0 10px #63462D, 0 0 10px rgba(58, 255, 9, 0.2); /* Outer border and shadow */
 }
