@@ -143,9 +143,12 @@
                 }
 
                 spinBtn.onclick = function() {
-                    spinBtn.disabled = true; // Disable the button
-                    spinBtn.style.pointerEvents = 'none'; // Disable pointer events
-                    wheel.style.transition = "transform 5s ease-out"; // Fast spin
+                    spinBtn.disabled = true;
+                    document.querySelectorAll(".push-btn, .color-btn, .range-btn, .spinBtn").forEach(element => {
+                        element.style.pointerEvents = 'none'; // Disable button while spinning the whels thru css
+                    });
+
+                    wheel.style.transition = "transform 5s ease-out"; // 5s Fast spin
                     let randomValue = Math.floor(Math.random() * 16); // Generate a random value
                     let targetDegree = (randomValue * 22.5) + 90; // Calculate the target degree (aligned to 90 degrees)
                     let additionalRotations = 3 * 360;
@@ -157,20 +160,21 @@
                         let finalValue = value % 360; // Get the final rotation angle
                         console.log("Final Value (Degrees):", finalValue); // Log the final rotation angle
                         let result = getResultFromDegree(finalValue); // Find the result
-                        alert("Landed on: " + result); // Show the result
-
+                        
                         // Call the function with the result after a brief delay
                         setTimeout(() => {
+                            alert("Landed on: " + result); // Show the result
                             checkResultForPlayer1(result); // Call the function with the result
-                        
+                            
                             spinBtn.disabled = false;
-                            spinBtn.style.pointerEvents = 'auto';
-                        }, 100); // Wait for 100ms before checking the result
-                        // Enable the button and reset pointer events after the spin
+                            document.querySelectorAll(".push-btn, .color-btn, .range-btn, .spinBtn").forEach(element => {
+                                element.style.pointerEvents = 'auto'; // Enable yung mga na off na buttons thru css
+                            });
+                        }, 500); // Wait for 500ms before showing the result
 
                         // Clear bets after a brief delay
-                        setTimeout(clearBets, 2 00); // Clear bets after 200ms
-                    }, 3100); // Wait for the rotation to finish
+                        setTimeout(clearBets, 200); // Clear bets after 200ms
+                    }, 5100); // Wait for the rotation to finish
                 };
 
                 function clearBets() {
@@ -179,8 +183,7 @@
                     betDisplays.forEach(display => {
                         display.innerText = ''; // Clear the bet text
                     });
-                    resetSelectedCharRoulette() // para mag reset ang betchar di ma double sa array 
-                    
+                    resetSelectedCharRoulette(); // Reset selected characters para di mag stick ang character sa null
                 }
                 
 
