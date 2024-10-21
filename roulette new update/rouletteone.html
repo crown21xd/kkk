@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ROULETTE ROULITE</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <div class="header" id="myHeader">
+            <h1>ADS!!!</h1>
+                
+        </div>
+        <div class="game-container">
+            <div class="popup-overlay" id="popup">
+                <div class="popup-content">
+                    <h2>RULES and REGULATIONS</h2>
+                    <p>PAY TABLE RULES<br>
+                        Red or Black: 1:1<br>
+                        1-8 or 9-16: 1:1<br>
+                        Zero (Green): 1:8<br>
+                        Direct Number (Single Number): 1:15 <br>P.S.
+                        "players must withdraw their credit first before changing bankero"</br></p>
+                    <h2>PLAYERS AND BANKER GENTELMEN AGREEMENT</h2>
+                    <p> Banker and players should have a ageement within them about how much the maximum BETS will be and repect each other or set their own game rules.</p>
+                    <button class="close-popup-btn" id="closePopupBtn">I Understand</button>
+                </div>
+            </div>
+            <style>
+                /* Set a background color for the entire page */
+                body {
+                    background-image: url('background.png');
+                    background-size: cover;
+                }
+        
+                /* Style for the container */
+            
+            </style>
+            <script>
+            // Get the popup overlay and the close button
+            const popup = document.getElementById('popup');
+            const closePopupBtn = document.getElementById('closePopupBtn');
+            
+            // Add event listener to the button
+            closePopupBtn.addEventListener('click', function() {
+                // Hide the popup by setting its display to 'none'
+                popup.style.display = 'none';
+            });
+            
+            // Optionally, you can automatically display the popup on page load
+            window.onload = function() {
+                popup.style.display = 'block';  // Show the popup when the page loads
+            };
+            </script>
+            
+            <div class="container">
+                <div class="spinBtn">Spin</div>
+                <div class="wheel">
+                    <div class="number" style="--i:1;--clr:#13b10e;">
+                        <span>0</span>
+                    </div>
+                    <div class="number" style="--i:2;--clr:#000000;">
+                        <span>1</span>
+                    </div>
+                    <div class="number" style="--i:3;--clr:#ce1a1a;">
+                        <span>10</span>
+                    </div>
+                    <div class="number" style="--i:4;--clr:#000000;">
+                        <span>3</span>
+                    </div>
+                    <div class="number" style="--i:5;--clr:#ce1a1a;">
+                        <span>12</span>
+                    </div>
+                    <div class="number" style="--i:6;--clr:#000000;">
+                        <span>5</span>
+                    </div>
+                    <div class="number" style="--i:7;--clr:#ce1a1a;">
+                        <span>14</span>
+                    </div>
+                    <div class="number" style="--i:8;--clr:#000000;">
+                        <span>7</span>
+                    </div>
+                    <div class="number" style="--i:9;--clr:#ce1a1a;">
+                        <span>16</span>
+                    </div>
+                    <div class="number" style="--i:10;--clr:#000000;">
+                        <span>9</span>
+                    </div>
+                    <div class="number" style="--i:11;--clr:#ce1a1a;">
+                        <span>2</span>
+                    </div>
+                    <div class="number" style="--i:12;--clr:#000000;">
+                        <span>11</span>
+                    </div>
+                    <div class="number" style="--i:13;--clr:#ce1a1a;">
+                        <span>4</span>
+                    </div>
+                    <div class="number" style="--i:14;--clr:#000000;">
+                        <span>13</span>
+                    </div>
+                    <div class="number" style="--i:15;--clr:#ce1a1a;">
+                        <span>6</span>
+                    </div>
+                    <div class="number" style="--i:16;--clr:#000000;">
+                        <span>15</span>
+                    </div>
+                    <div class="number" style="--i:17;--clr:#ce1a1a;">
+                        <span>8</span>
+                    </div>
+                </div>
+                <script>
+                    let wheel = document.querySelector('.wheel');       
+                    let spinBtn = document.querySelector('.spinBtn');
+                    let value = 0; // Initial value for rotation
+
+                    // Array with min/max degrees and values
+                    const characterValues = [
+                        { minDegree: 349.41, maxDegree: 10.59, value: 1 },//
+                        { minDegree: 10.60, maxDegree: 31.77, value: 0 },//
+                        { minDegree: 31.78, maxDegree: 52.96, value: 8 },//
+                        { minDegree: 52.97, maxDegree: 74.14, value: 15 },//
+                        { minDegree: 74.15, maxDegree: 95.32, value: 6 },//
+                        { minDegree: 95.33, maxDegree: 116.5, value: 13 },
+                        { minDegree: 116.51, maxDegree: 137.68, value: 4 },//
+                        { minDegree: 137.69, maxDegree: 158.86, value: 11 },//
+                        { minDegree: 158.87, maxDegree: 180.04, value: 2 },//
+                        { minDegree: 180.05, maxDegree: 201.22, value: 13 },//
+                        { minDegree: 201.23, maxDegree: 222.4, value: 16 },//
+                        { minDegree: 222.41, maxDegree: 243.58, value: 7 },//
+                        { minDegree: 243.59, maxDegree: 264.76, value: 14 },//
+                        { minDegree: 264.77, maxDegree: 285.94, value: 5 },//
+                        { minDegree: 285.95, maxDegree: 307.12, value: 12 },//
+                        { minDegree: 307.13, maxDegree: 328.3, value: 3 },//
+                        { minDegree: 328.31, maxDegree: 349.4, value: 10 }//
+                    ];
+
+                    // Function to get the result from the degrees
+                    function getResultFromDegree(degrees) {
+                        let normalizedDegrees = degrees % 360; // Normalize degrees to the range 0-359
+                        console.log("Normalized Degrees:", normalizedDegrees); // Log the normalized degrees
+                        for (let i = 0; i < characterValues.length; i++) {
+                            const { minDegree, maxDegree, value } = characterValues[i];
+                            if (
+                                (normalizedDegrees >= minDegree && normalizedDegrees <= maxDegree) ||
+                                (minDegree > maxDegree && (normalizedDegrees >= minDegree || normalizedDegrees <= maxDegree))
+                            ) {
+                                return value; // Return the value corresponding to the degree range
+                            }
+                        }
+                        return null; // Return null if no match
+                    }
+
+                    spinBtn.onclick = function() {
+                        spinBtn.disabled = true;
+                        document.querySelectorAll(".push-btn, .color-btn, .range-btn, .spinBtn").forEach(element => {
+                            element.style.pointerEvents = 'none'; // Disable button while spinning the whels thru css
+                        });
+
+                        wheel.style.transition = "transform 7s ease-out"; // 7s Fast spin
+                        let randomValue = Math.floor(Math.random() * 16); // Generate a random value
+                        let targetDegree = (randomValue * 22.5) + 90; // Calculate the target degree (aligned to 90 degrees)
+                        let additionalRotations = 3 * 360;
+                        value += targetDegree + additionalRotations; // Update the rotation value
+                        wheel.style.transform = `rotate(${value}deg)`; // Spin the wheel
+
+                        // This code will run after the wheel.js file is loaded
+                        setTimeout(() => {
+                            let finalValue = value % 360; // Get the final rotation angle
+                            console.log("Final Value (Degrees):", finalValue); // Log the final rotation angle
+                            let result = getResultFromDegree(finalValue); // Find the result
+                            
+                            // Call the function with the result after a brief delay
+                            setTimeout(() => {
+                                alert("Landed on: " + result); // Show the result
+                                checkResultForPlayer1(result); // Call the function with the result
+                                
+                                spinBtn.disabled = false;
+                                document.querySelectorAll(".push-btn, .color-btn, .range-btn, .spinBtn").forEach(element => {
+                                    element.style.pointerEvents = 'auto'; // Enable yung mga na off na buttons thru css
+                                });
+                            }, 500); // Wait for 500ms before showing the result
+
+                            // Clear bets after a brief delay
+                            setTimeout(clearBets, 700); // Clear bets after 200ms
+                        }, 7100); // Wait for the rotation to finish
+                    };
+
+                    function clearBets() {
+                        // Clear all bet displays
+                        const betDisplays = document.querySelectorAll('.bet-display');
+                        betDisplays.forEach(display => {
+                            display.innerText = ''; // Clear the bet text
+                        });
+                        resetSelectedCharRoulette(); // Reset selected characters para di mag stick ang character sa null
+                    }
+                    
+
+                </script>
+            </div>
+            <div class="zeroholder">
+                <button class="color-btn green" data-color="zero">ZERO <span class="bet-display" id="bet-display-zero"></span></button>
+            </div>
+            <div class="button-container">
+                <button class="push-btn" data-number="1">1 <span class="bet-display" id="bet-display-1"></span></button>
+                <button class="push-btn" data-number="2" style="background-color: red; color: white; padding: 10px 20px; font-size: 1em; font-weight: bold;">
+                    2 <span class="bet-display" id="bet-display-2"></span></button>
+                
+                <button class="push-btn" data-number="3">3 <span class="bet-display" id="bet-display-3"></span></button>
+                <button class="push-btn" data-number="4" style="background-color: red; color: white; padding: 10px 20px; font-size: 1em; font-weight: bold;">
+                    4 <span class="bet-display" id="bet-display-4"></span></button>
+                <button class="push-btn" data-number="5">5 <span class="bet-display" id="bet-display-5"></span></button>
+                <button class="push-btn" data-number="6" style="background-color: red; color: white; padding: 10px 20px; font-size: 1em; font-weight: bold;">
+                    6 <span class="bet-display" id="bet-display-6"></span></button>
+                <button class="push-btn" data-number="7">7 <span class="bet-display" id="bet-display-7"></span></button>
+                <button class="push-btn" data-number="8" style="background-color: red; color: white; padding: 10px 20px; font-size: 1em; font-weight: bold;">
+                    8 <span class="bet-display" id="bet-display-8"></span></button>
+                <button class="push-btn" data-number="9">9 <span class="bet-display" id="bet-display-9"></span></button>
+                <button class="push-btn" data-number="10" style="background-color: red; color: white; padding: 10px 20px; font-size: 1em; font-weight: bold;">
+                    10 <span class="bet-display" id="bet-display-10"></span></button>
+                <button class="push-btn" data-number="11">11<span class="bet-display" id="bet-display-11"></span></button>
+                <button class="push-btn" data-number="12" style="background-color: red; color: white; padding: 10px 20px; font-size: 1em; font-weight: bold;">
+                    12 <span class="bet-display" id="bet-display-12"></span></button>
+                <button class="push-btn" data-number="13">13<span class="bet-display" id="bet-display-13"></span></button>
+                <button class="push-btn" data-number="14" style="background-color: red; color: white; padding: 10px 20px; font-size: 1em; font-weight: bold;">
+                    14 <span class="bet-display" id="bet-display-14"></span></button>
+                <button class="push-btn" data-number="15">15<span class="bet-display" id="bet-display-15"></span></button>
+                <button class="push-btn" data-number="16" style="background-color: red; color: white; padding: 10px 20px; font-size: 1em; font-weight: bold;">
+                    16 <span class="bet-display" id="bet-display-16"></span></button>
+                
+            </div>
+            <div class="range-container">
+                <button class="range-btn" data-number="1-8">1-8<span class="bet-display" id="range1-8-btn"></span></button>
+                <button class="range-btn" data-number="9-16">9-16<span class="bet-display" id="range9-16-btn"></span></button>
+                
+            </div>
+            
+            <div class="color-buttons">
+                
+                <button class="color-btn black" data-color="black">Black <span class="bet-display" id="bet-display-black"></span></button>
+                <button class="color-btn red" data-color="red">Red <span class="bet-display" id="bet-display-red"></span></button>
+            </div>
+
+            <script>
+                const numberButtons = document.querySelectorAll('.push-btn');
+                const colorButtons = document.querySelectorAll('.color-btn');
+            
+                // Function to set the bet amount next to the respective button
+                function setBetAmount(elementId, amount) {
+                    document.getElementById(elementId).innerText = `Bet: $${amount}`;
+                }
+            
+            
+    
+                // Select all the range buttons (1-8 and 9-16)
+                const rangeButtons = document.querySelectorAll('.range-btn');
+
+
+
+                // Function to display the bet in the corresponding element
+                function setBetAmount(elementId, betAmount) {
+                    const betDisplayElement = document.getElementById(elementId); // Find the span element by its ID
+                    if (betDisplayElement) {
+                        betDisplayElement.innerText = `Bet: ${betAmount}`; // Update the span with the bet amount
+                    }
+                }
+
+                
+            </script>
+                
+        </div>
+        <div class="player-container">
+            <div class="player" id="player1">
+                <h3>Player 1</h3>
+                <p>Credits: <span id="credits-player1"></span></p>
+            </div>
+        </div>
+    
+
+    
+        <div class="buttons-above-image-container">
+            <button class="profile-btn">Profile</button>
+            <button class="chip-btn">Distribute Chips</button>
+        </div>
+        <script src="wheel.js">
+            checkResultForPlayer1(result)
+        </script>
+        
+        
+    </body>
+</html>
